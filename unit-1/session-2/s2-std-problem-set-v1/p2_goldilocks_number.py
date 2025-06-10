@@ -1,6 +1,6 @@
 '''
 U-nderstand:
-i/p = nums : list[int]
+i/p = nums: list[int]
 o/p = num: int
 
 Edge cases:
