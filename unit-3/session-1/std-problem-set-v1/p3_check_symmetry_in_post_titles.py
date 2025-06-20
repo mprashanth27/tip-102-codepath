@@ -25,9 +25,9 @@ def is_symmetrical_title(title):
 
     while l <= r:
         # check if current char's pointed by l & r are alphanumeric, if not update ptr's
-        while not title[l].isalnum():
+        while l < r and not title[l].isalnum(): # l < r is needed to make sure it is under bounds
             l += 1
-        while not title[r].isalnum():
+        while l < r and not title[r].isalnum(): # l < r is needed to make sure it is under bounds
             r -= 1
         
         # check if l & r val's are same, if yes continue
