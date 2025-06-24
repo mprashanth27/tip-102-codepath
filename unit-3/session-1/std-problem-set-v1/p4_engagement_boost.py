@@ -7,17 +7,18 @@ o/p = list[int]; an array of the squares of each number sorted in non-decreasing
 #Constraints: Modify the solution below to use the two-pointer technique
 
 #Edge cases
-[]
-only +ve; W/ & W/O duplicate values
-0 & +ve; W/ & W/O duplicate values
--ve & 0; W/ & W/O duplicate values
-[3,3,3,3,3]
+1. []
+2. only +ve; W/ & W/O duplicate values [1,2,3,4,5], [1,2,3,3,4,5] > Pass
+3. only -ve; W/ & W/O duplicate values > FAIL, CHECK! 
+4. 0 & +ve; W/ & W/O duplicate values [0,1,2,3,4,5] > Pass
+5. -ve & 0; W/ & W/O duplicate values [-3,-2,-1,0] > Pass
+6. [3,3,3,3,3] > Pass
 
 P-lan:
 p1 : break list in to 2 halfs by length [WON'T WORK! as we would still need to sort it] 
 eg: [-4, -1, 0, 3, 10]
 [-4, -1, 0, 3, 10] > [-4, -1, 0] [ 3, 10]
-squared: l1 = [16, 1, 0], l2 = [ 9, 100]
+squared: l1 = [16, 1, 0], l2 = [ 9, 100]                                                                                                                                                                                                                        
 now use 2 same direction ptrs to merge them - l1 ptr, l2 ptr
 l1[0]<l2[0]
 res.append(l1[0]) 
@@ -65,8 +66,18 @@ def engagement_boost(engagements):
         while list2_ptr < len(engagements): # add if any nums remaining in list2
             square_and_add_engagement(list2_ptr)
             list2_ptr += 1
+    else:
+        for j in range(len(engagements)):
+            square_and_add_engagement(j)
     
     return squared_engagements
 
-print(engagement_boost([-4, -1, 0, 3, 10])) # o/p = [0, 1, 9, 16, 100] Pass
-print(engagement_boost([-7, -3, 2, 3, 11])) # o/p = [4, 9, 9, 49, 121] Pass
+# print(engagement_boost([-4, -1, 0, 3, 10])) # o/p = [0, 1, 9, 16, 100] Pass
+# print(engagement_boost([-7, -3, 2, 3, 11])) # o/p = [4, 9, 9, 49, 121] Pass
+# print(engagement_boost([1,2,3,4,5])) # o/p = [1, 4, 9, 16, 25] Pass
+# print(engagement_boost([1,2,3,3,4,5])) # o/p = [1, 4, 9, 9, 16, 25] Pass
+# print(engagement_boost([0,1,2,3,4,5])) # o/p = [0, 1, 4, 9, 16, 25] Pass
+# print(engagement_boost([0,1,2,3,3,4,5])) # o/p = [0, 1, 4, 9, 9, 16, 25] Pass
+# print(engagement_boost([-3,-2,-1,0])) # o/p = [0, 1, 4, 9] Pass
+# print(engagement_boost([3,3,3])) # o/p = [9, 9, 9] Pass
+print(engagement_boost([-3,-2,-1])) # o/p = Error CHECK!!! FAILING IF ONLY -VE NUMBERS, ISSUE WITH SETTING PIVOT
