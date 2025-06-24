@@ -7,7 +7,11 @@ o/p = list[int]; an array of the squares of each number sorted in non-decreasing
 #Constraints: Modify the solution below to use the two-pointer technique
 
 #Edge cases
-
+[]
+only +ve; W/ & W/O duplicate values
+0 & +ve; W/ & W/O duplicate values
+-ve & 0; W/ & W/O duplicate values
+[3,3,3,3,3]
 
 P-lan:
 p1 : break list in to 2 halfs by length [WON'T WORK! as we would still need to sort it] 
@@ -27,7 +31,7 @@ p2 : break list in to halfs at 0 or 1st +ve num.
 I-mplement:
 '''
 #My two-pointer code
-# NOTE:THIS CODE WAS WRITTEN ASSUMING THERE WILL BE -VE NUMS IN THE I/P LIST, 
+# NOTE:THIS CODE WAS WRITTEN ASSUMING THERE WILL BE -VE NUMS IN THE I/P LIST
 # NEED TO VERIFY IF IT WORKS IF THEY ARE ONLY +VE NUMS IN THE I/P LIST
 
 def engagement_boost(engagements):
@@ -48,7 +52,7 @@ def engagement_boost(engagements):
         list1_ptr = pivot # to move left from pivot
         list2_ptr = pivot + 1 # to move right from pivot
         while list1_ptr >= 0 and list2_ptr < len(engagements):
-            if engagements[list1_ptr] <= engagements[list1_ptr]:
+            if abs(engagements[list1_ptr]) < abs(engagements[list2_ptr]): # CHECK LATER! <=? i.e., what if engagements[list1_ptr] == engagements[list1_ptr]? 
                 square_and_add_engagement(list1_ptr)
                 list1_ptr -= 1
             else:
@@ -64,5 +68,5 @@ def engagement_boost(engagements):
     
     return squared_engagements
 
-print(engagement_boost([-4, -1, 0, 3, 10])) # o/p = [0, 1, 16, 9, 100] FAIL, CHECK LATER!
-#print(engagement_boost([-7, -3, 2, 3, 11]))
+print(engagement_boost([-4, -1, 0, 3, 10])) # o/p = [0, 1, 9, 16, 100] Pass
+print(engagement_boost([-7, -3, 2, 3, 11])) # o/p = [4, 9, 9, 49, 121] Pass
