@@ -10,7 +10,7 @@ x = -1
 
 def get_item(items, x):
     if x >= 0 and x < len(items) and items:
-	    return items[x]
+        return items[x]
     return None
 
 items = ["piglet", "pooh", "roo", "rabbit"]
