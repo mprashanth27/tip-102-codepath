@@ -25,7 +25,7 @@ res.app(chara)
 
 I-mplement:
 '''
-# T = O(n^2), M = O(n)
+# T = O(n), M = O(n)
 def tiggerfy(word):
     if not word:
         return ""
@@ -33,7 +33,7 @@ def tiggerfy(word):
     word = word.lower()
     chara_to_remove = {"t", "i"}
     double_characs_to_remove = {"gg", "er"}
-    res = "" # ~ M = O(n)
+    res = [] # ~ M = O(n)
     
     i = 0
     while i < len(word):
@@ -42,9 +42,9 @@ def tiggerfy(word):
         elif word[i : i+2] in double_characs_to_remove:
             i += 2
         else:
-            res += word[i] # ~ T = O(n^2) as this is a string concatenation, which is O(i) at each step (strings are immutable in Python)
+            res.append(word[i]) # ~ T = O(1) 
             i += 1
-    return res
+    return ''.join(res) # ~ T = O(n) 
 
 word = "Trigger"
 print(tiggerfy(word))
