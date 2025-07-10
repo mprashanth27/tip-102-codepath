@@ -10,7 +10,7 @@ o/p = new string
 #Edge cases
 ""
 mix of single chars of double chara substrings eg. "Triggger" > rg PASS
-"cat dog" # spaces b/w words? ASSUME NO
+"cat dog" # spaces b/w words? ASSUME NO, if Yes, u can use strs_to_skip = {" ", ","} 
 
 
 P-lan:
@@ -21,7 +21,7 @@ if in "t", "i" skip word[i] and inc i+1
 elif word[i:i+2] in "gg", "er" skip word[i:i+2] and inc i+2
 else:
 res.app(chara)
-
+#optimization? - if we increament by len(characstoremove), we can put all the charas to remove in one set and 1 if loop is enough
 
 I-mplement:
 '''
@@ -31,14 +31,13 @@ def tiggerfy(word):
         return ""
     
     word = word.lower()
-    chara_to_remove = {"t", "i"}
-    double_characs_to_remove = {"gg", "er"}
+    strs_to_remove = {"t", "i", "gg", "er"}
     res = [] # ~ M = O(n)
     
     i = 0
     while i < len(word):
-        if word[i] in chara_to_remove:
-            i += 1
+        if word[i: i+2] in strs_to_remove:
+            i += 1 
         elif word[i : i+2] in double_characs_to_remove:
             i += 2
         else:
