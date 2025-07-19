@@ -15,13 +15,17 @@ P-lan:
 #p1 [modifies i/p list]
 if stones not empty> return stones.pop() + sum_stones(stones)
 
+#p2 [w/o modifiying i/p list]
+
 I-mplement:
 '''
 # T = O(n), M = O(n) ~ due to recursion depth
 def sum_stones(stones):
-    if not stones:
-        return 0
-    return stones.pop() + sum_stones(stones)
+    def sum_helper(stones, index = 0):
+        if index == len(stones): # base case
+            return 0
+        return stones[index] + sum_helper(stones, index + 1)
+    return sum_helper(stones)
     
 
 print(sum_stones([5, 10, 15, 20, 25, 30])) # = 105 #Pass
