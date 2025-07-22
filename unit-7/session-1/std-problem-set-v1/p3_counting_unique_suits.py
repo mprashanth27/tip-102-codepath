@@ -36,13 +36,16 @@ def count_suits_iterative(suits):
 def count_suits_recursive(suits):
     # T = O(n), M = O(n)
     unique_suits = set() # ~ M = O(n) 
+    suits_length = len(suits)
+    
     def count_unique_suits(index = 0):
-        if index == len(suits): # base case
+        if index == suits_length: # base case
             return len(unique_suits)
         
         if suits[index] not in unique_suits: # ~ T = O(n)
             unique_suits.add(suits[index])
         return count_unique_suits(index + 1)
+    
     return count_unique_suits()
 
     
