@@ -21,11 +21,8 @@ Plan:
     current=current.right
 5. Return the array
 '''
-class TreeNode:
-    def __init__(self, value, left=None, right=None):
-        self.val = value
-        self.left = left
-        self.right = right
+from tree_node import TreeNode
+
 # def right_vine(root):
 #     rightNodes = []
 #     current = root
