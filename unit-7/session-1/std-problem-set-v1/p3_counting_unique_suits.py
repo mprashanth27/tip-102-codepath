@@ -34,7 +34,26 @@ def count_suits_iterative(suits):
 
 
 def count_suits_recursive(suits):
-    pass
+    # T = O(n), M = O(n)
+    unique_suits = set() # ~ M = O(n) 
+    def count_unique_suits(index = 0):
+        if index == len(suits): # base case
+            return len(unique_suits)
+        
+        if suits[index] not in unique_suits: # ~ T = O(n)
+            unique_suits.add(suits[index])
+        return count_unique_suits(index + 1)
+    return count_unique_suits()
 
-print(count_suits_iterative(["Mark I", "Mark II", "Mark III"]))
-#print(count_suits_recursive(["Mark I", "Mark I", "Mark III"]))
+    
+
+print(count_suits_iterative(["Mark I", "Mark II", "Mark III"])) # pass
+print(count_suits_iterative([])) # pass
+print(count_suits_iterative(["Mark I"])) # pass
+print(count_suits_iterative(["Mark I", "Mark I"])) # pass
+print("****************")
+print(count_suits_recursive(["Mark I", "Mark I", "Mark III"])) # pass
+print(count_suits_recursive([])) # pass
+print(count_suits_recursive(["Mark I"])) # pass
+print(count_suits_recursive(["Mark I", "Mark I"])) # pass
+
