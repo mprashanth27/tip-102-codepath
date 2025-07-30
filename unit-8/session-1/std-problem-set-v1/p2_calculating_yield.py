@@ -3,13 +3,10 @@ You have a fruit tree represented as a binary tree with exactly three nodes: the
 Given the root of the tree, evaluate the amount of fruit your tree will yield this year. The tree has the following form:
 
 Leaf nodes have an integer value.
-The root has a string value of either "+", "-", "*", or "-".
+The root has a string value of either "+", "-", "*", or "/".
 The yield of a the tree is calculated by applying the mathematical operation to the two children.
 
 Return the result of evaluating the root node.
-
-Evaluate the time complexity of your function. Define your variables and provide a rationale for why you believe 
-your solution has the stated time complexity.
 
 Understand:
 1. 3 nodes, root is a string with the operation, children are numbers
@@ -25,20 +22,31 @@ Plan:
     else:
         return root.left*root.right
 """
-class TreeNode:
-    def __init__(self, value, left=None, right=None):
-        self.val = value
-        self.left = left
-        self.right = right
+'''
+U-nderstand:
+
+i/p = binary tree with exactly three nodes
+o/p = result of evaluating the root node
+
+#Constraints:
+
+#Edge cases
+
+M-atch: Binary tree
+
+'''
+from binary_tree import TreeNode
         
 def calculate_yield(root):
-  if root.val == "+":
-      return root.left.val+root.right.val
-  elif root.val == "-":
-      return root.left.val-root.right.val
-  else:
-      return root.left.val*root.right.val
+    if root.val == "+":
+        return root.left.val + root.right.val
+    elif root.val == "-":
+        return root.left.val-root.right.val
+    elif root.val == "*":
+        return root.left.val*root.right.val
+    elif root.val == "/":
+        return root.left.val / root.right.val
   
 apple_tree = TreeNode("+", TreeNode(7), TreeNode(5))
 
-# print(calculate_yield(apple_tree))
+print(calculate_yield(apple_tree))
